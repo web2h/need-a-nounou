@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.web2h.nan</groupId>
+	<artifactId>nan</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Need a Nounou</name>
+	
+	<modules>
+		<module>nan-model</module>
+		<module>nan-persistence</module>
+		<module>nan-core</module>
+		<module>nan-rest</module>
+	</modules>
+	
+	<properties>
+		<com.fasterxml.jackson.core.version>2.7.2</com.fasterxml.jackson.core.version>
+		<javax.servlet.version>3.1.0</javax.servlet.version>
+		<javax.servlet.jsp.version>2.3.1</javax.servlet.jsp.version>
+		<javax.servlet.jsp.jstl.version>1.2</javax.servlet.jsp.jstl.version>
+		<jdk.version>1.6</jdk.version>
+		<org.springframework.version>4.2.5.RELEASE</org.springframework.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<!-- SPRING -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<!-- SPRING - end -->
+			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet.version}</version>
+			</dependency>
+		
+			<dependency>
+				<groupId>javax.servlet.jsp.jstl</groupId>
+				<artifactId>jstl-api</artifactId>
+				<version>${javax.servlet.jsp.jstl.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>javax.servlet.jsp-api</artifactId>
+				<version>${javax.servlet.jsp.version}</version>
+			</dependency>
+		
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>${com.fasterxml.jackson.core.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
