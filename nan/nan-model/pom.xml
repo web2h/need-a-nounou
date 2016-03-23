@@ -16,6 +16,14 @@
 			<artifactId>spring-context</artifactId>
 		</dependency>
 		<!-- SPRING - end -->
+		
+		<!-- Persistence -->
+		<dependency> 
+			<!-- Entity annotations -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<!-- Persistence end -->
 	</dependencies>
 
 	<build>

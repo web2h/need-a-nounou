@@ -19,7 +19,8 @@
 		<javax.servlet.version>3.1.0</javax.servlet.version>
 		<javax.servlet.jsp.version>2.3.1</javax.servlet.jsp.version>
 		<javax.servlet.jsp.jstl.version>1.2</javax.servlet.jsp.jstl.version>
-		<jdk.version>1.6</jdk.version>
+		<jdk.version>1.8</jdk.version>
+		<org.hibernate.version>5.1.0.Final</org.hibernate.version>
 		<org.springframework.version>4.2.5.RELEASE</org.springframework.version>
 	</properties>
 	
@@ -50,6 +51,14 @@
 				<version>${org.springframework.version}</version>
 			</dependency>
 			<!-- SPRING - end -->
+			
+			<!-- Persistence -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${org.hibernate.version}</version>
+			</dependency>
+			<!-- Persistence - end -->
 			
 			<dependency>
 				<groupId>javax.servlet</groupId>
