@@ -22,6 +22,7 @@
 		<jdk.version>1.8</jdk.version>
 		<org.hibernate.version>5.1.0.Final</org.hibernate.version>
 		<org.springframework.version>4.2.5.RELEASE</org.springframework.version>
+		<org.springframework.data.version>1.9.4.RELEASE</org.springframework.data.version>
 	</properties>
 	
 	<dependencyManagement>
@@ -41,6 +42,12 @@
 			
 			<dependency>
 				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
 				<version>${org.springframework.version}</version>
 			</dependency>
@@ -50,6 +57,13 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${org.springframework.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${org.springframework.data.version}</version>
+			</dependency>
+			
 			<!-- SPRING - end -->
 			
 			<!-- Persistence -->
@@ -58,6 +72,12 @@
 				<artifactId>hibernate-core</artifactId>
 				<version>${org.hibernate.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${org.hibernate.version}</version>
+			</dependency>			
 			<!-- Persistence - end -->
 			
 			<dependency>
