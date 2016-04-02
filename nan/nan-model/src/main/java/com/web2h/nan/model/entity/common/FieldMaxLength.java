@@ -12,4 +12,10 @@ public interface FieldMaxLength {
 	
 	/** Name max length. */
 	int NAME = 100;
+	
+	/** Password max length. */
+	int PASSWORD = 50;
+	
+	/** Status max length. */
+	int STATUS = 10;
 }

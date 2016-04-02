@@ -1,6 +1,14 @@
 package com.web2h.nan.model.entity.user;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.web2h.nan.model.entity.common.FieldMaxLength;
 import com.web2h.nan.model.entity.common.IdentifiableAndVersionableEntity;
@@ -33,18 +41,10 @@ public class User extends IdentifiableAndVersionableEntity {
 	@Enumerated(EnumType.STRING)
 	private UserStatus status = UserStatus.INACTIVE;
 
-	/** confirmation tag. */
-	@Column(name = "confirmation_tag", length = FieldMaxLength.CONFIRMATION_TAG)
-	private String confirmationTag;
-
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<UserRole> roles = new HashSet<UserRole>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	@OrderBy("event_ts DESC")
-	private List<UserLogEvent> log = new ArrayList<UserLogEvent>();
-
-	private static final long serialVersionUID = -3093976691759739733L;
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Is the user active?
@@ -106,28 +106,12 @@ public class User extends IdentifiableAndVersionableEntity {
 		this.status = status;
 	}
 
-	public String getConfirmationTag() {
-		return confirmationTag;
-	}
-
-	public void setConfirmationTag(String confirmationTag) {
-		this.confirmationTag = confirmationTag;
-	}
-
 	public Set<UserRole> getRoles() {
 		return roles;
 	}
 
 	public void addRole(UserRole role) {
 		roles.add(role);
-	}
-
-	public List<UserLogEvent> getLog() {
-		return log;
-	}
-
-	public void addLogEvent(UserLogEvent logEvent) {
-		log.add(logEvent);
 	}
 
 	@Override
