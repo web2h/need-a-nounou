@@ -16,11 +16,11 @@ import com.web2h.nan.rest.interceptor.RequestValidityInterceptor;
 
 @Configuration
 @EnableWebMvc
-@Import({DatabaseConfiguration.class})
+@Import({ DatabaseConfiguration.class })
 @ComponentScan(basePackages = "com.web2h.nan")
 @PropertySource("classpath:app.properties")
 public class AppConfiguration extends WebMvcConfigurerAdapter {
-	
+
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
@@ -31,9 +31,9 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(new RequestValidityInterceptor(getAuthenticationService()));
 		// TODO exclude path patterns for login
 	}
-	
+
 	@Bean
 	public AuthenticationService getAuthenticationService() {
-	    return new AuthenticationServiceImpl();
+		return new AuthenticationServiceImpl();
 	}
 }

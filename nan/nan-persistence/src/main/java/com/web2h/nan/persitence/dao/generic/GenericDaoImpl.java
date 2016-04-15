@@ -17,15 +17,20 @@ import com.web2h.nan.persitence.dao.utils.Page;
 
 /**
  * Generic DAO abstract class.
- * 
+ *
  * @author Web2h
  *
- * @param <E> Entity class
- * @param <PK> Table primary key class
+ * @param <E>
+ *            Entity class
+ * @param <PK>
+ *            Table primary key class
  */
 public abstract class GenericDaoImpl<E, PK extends Serializable> implements GenericDao<E, PK> {
 
 	private Class<E> clazz;
+
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected GenericDaoImpl() {
@@ -34,13 +39,18 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 		clazz = (Class) parameterizedType.getActualTypeArguments()[0];
 	}
 
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public PK create(E entity) {
 		return (PK) getCurrentSession().save(entity);
+	}
+
+	protected Criteria createCriteria() {
+		return getCurrentSession().createCriteria(clazz);
+	}
+
+	protected DetachedCriteria createDetachedCriteria() {
+		return DetachedCriteria.forClass(clazz);
 	}
 
 	@Override
@@ -48,20 +58,18 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 		getCurrentSession().delete(entity);
 	}
 
+	public Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
 	@Override
+	@SuppressWarnings("unchecked")
 	public E read(PK pk) {
 		try {
 			return (E) getCurrentSession().get(clazz, pk);
 		} catch (IllegalArgumentException iae) {
 			return null;
 		}
-	}
-
-	@Override
-	public E readAndRefresh(PK pk) {
-		E entity = (E) getCurrentSession().get(clazz, pk);
-		getCurrentSession().refresh(entity);
-		return entity;
 	}
 
 	@Override
@@ -83,6 +91,14 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 			criteria.setMaxResults(page.getMaxResult());
 		}
 		return criteria.list();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public E readAndRefresh(PK pk) {
+		E entity = (E) getCurrentSession().get(clazz, pk);
+		getCurrentSession().refresh(entity);
+		return entity;
 	}
 
 	@Override
@@ -117,17 +133,5 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 	public void update(E entity) {
 		getCurrentSession().saveOrUpdate(entity);
 		getCurrentSession().flush();
-	}
-
-	public Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
-	}
-
-	protected Criteria createCriteria() {
-		return getCurrentSession().createCriteria(clazz);
-	}
-
-	protected DetachedCriteria createDetachedCriteria() {
-		return DetachedCriteria.forClass(clazz);
 	}
 }
